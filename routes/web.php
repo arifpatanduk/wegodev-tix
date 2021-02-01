@@ -20,9 +20,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Users
-Route::get('/dashboard', [Dashboard\DashboardController::class, 'index']);
-Route::get('/dashboard/users', [Dashboard\UserController::class, 'index']);
-Route::get('/dashboard/user/edit/{id}', [Dashboard\UserController::class, 'edit']);
-Route::put('/dashboard/user/update/{id}', [Dashboard\UserController::class, 'update']);
-Route::delete('/dashboard/user/delete/{id}', [Dashboard\UserController::class, 'destroy']);
+Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard', [Dashboard\DashboardController::class, 'index']);
+
+    // Users
+    Route::get('/dashboard/users', [Dashboard\UserController::class, 'index'])->name('dashboard.users');
+    Route::get('/dashboard/users/{id}', [Dashboard\UserController::class, 'edit'])->name('dashboard.users.edit');
+    Route::put('/dashboard/users/{id}', [Dashboard\UserController::class, 'update'])->name('dashboard.users.update');
+    Route::delete('/dashboard/users/{id}', [Dashboard\UserController::class, 'destroy'])->name('dashboard.users.delete');
+});
