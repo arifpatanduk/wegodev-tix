@@ -1,6 +1,9 @@
 @extends('layouts.dashboard')
 
 @section('content')
+    <div class="mb-2">
+        <a href="{{ route('dashboard.movies.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Movie</a>
+    </div>
 
     <div class="card">
         <div class="card-header">
@@ -24,14 +27,18 @@
             </div>
         </div>
 
-        {{-- table users --}}
+        {{-- table movie --}}
         <div class="card-body p-0">
+            
+            {{-- method total() berasal pagination --}}
+            @if ($movies->total())
+
             <table class="table table-borderless table-striped table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Title</th>
-                        <th>Tumbnail</th>
+                        <th>Thumbnail</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -50,9 +57,13 @@
                     @endforeach
                 </tbody>
             </table>
-
+            
             {{-- link pagination --}}
             {{ $movies->appends($request)->links('pagination::bootstrap-4') }}
+            
+            @else    
+            <h4 class="text-center p-3">Data Movie belum ada</h4>
+            @endif
 
         </div>
     </div>
