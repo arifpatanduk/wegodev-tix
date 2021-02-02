@@ -23,9 +23,11 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [Dashboard\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/movies', [Dashboard\MoviesController::class, 'index'])->name('dashboard.movies');
     Route::get('/dashboard/theaters', [Dashboard\TheatersController::class, 'index'])->name('dashboard.theaters');
     Route::get('/dashboard/tickets', [Dashboard\TicketsController::class, 'index'])->name('dashboard.tickets');
+
+    // Movies
+    Route::get('/dashboard/movies', [Dashboard\MovieController::class, 'index'])->name('dashboard.movies');
 
     // Users
     Route::get('/dashboard/users', [Dashboard\UserController::class, 'index'])->name('dashboard.users');
