@@ -47,7 +47,8 @@
                     <tr>
                         <th scope="row">{{ ($movies->currentPage() - 1) * $movies->perPage() + $loop->iteration }}</th>
                         <td>{{ $movie->title }}</td>
-                        <td>{{ $movie->thumbnail }}</td>
+                        {{-- <td>{{ $movie->thumbnail }}</td> --}}
+                        <td><img src="{{ asset('storage/movies/'.$movie->thumbnail) }}" alt=""></td>
                         <td>
                             <a href="{{ route('dashboard.movies.edit', ['id' => $movie->id]) }}" title="edit" class="btn btn-success btn-sm">
                                 <i class="fas fa-pen"></i>
